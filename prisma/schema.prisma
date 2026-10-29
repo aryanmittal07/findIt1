@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(cuid())
+  name            String
+  email           String           @unique
+  phone           String?
+  passwordHash    String
+  city            String?
+  role            String           @default("USER") // USER, ADMIN
+  status          String           @default("ACTIVE") // ACTIVE, SUSPENDED
+  resetToken      String?
+  resetExpires    DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  items           Item[]
+  complaints      Complaint[]
+  sentRequests    ContactRequest[] @relation("SentRequests")
+  receivedRequests ContactRequest[] @relation("ReceivedRequests")
+  messages        Message[]
+  notifications   Notification[]
+  auditLogs       AuditLog[]
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  iconName    String   @default("Package")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  items       Item[]
+}
+
+model Item {
+  id                    String           @id @default(cuid())
+  referenceId           String           @unique // e.g. FID-2026-9041
+  type                  String           // "LOST" or "FOUND"
+  title                 String
+  description           String
+  brand                 String?
+  dateLostFound         DateTime
+  approxLocation        String
+  city                  String
+  preferredContactMethod String          @default("IN_APP") // IN_APP, PHONE, EMAIL
+  privacyPreference     String          @default("STRICT_IN_APP") // STRICT_IN_APP, VERIFIED_ONLY, MASKED_PUBLIC
+  rewardAmount          String?
+  status                String           @default("APPROVED") // SUBMITTED, UNDER_REVIEW, APPROVED, MATCHED, RESOLVED, CLOSED, REJECTED
+  isFeatured            Boolean          @default(false)
+  moderationNotes       String?
+
+  userId                String
+  user                  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  categoryId            String
+  category              Category         @relation(fields: [categoryId], references: [id])
+
+  images                ItemImage[]
+  contactRequests       ContactRequest[]
+
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+}
+
+model ItemImage {
+  id        String   @id @default(cuid())
+  url       String
+  isPrimary Boolean  @default(false)
+  itemId    String
+  item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Complaint {
+  id             String    @id @default(cuid())
+  referenceId    String    @unique // e.g. CMP-2026-1024
+  subject        String
+  category       String    // FRAUD, HARASSMENT, UNRESPONSIVE, WRONG_ITEM, OTHER
+  description    String
+  itemReference  String?   // FID-xxxx if related to an item
+  attachmentUrl  String?
+  priority       String    @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  status         String    @default("PENDING") // PENDING, INVESTIGATING, RESOLVED, REJECTED
+  adminResponse  String?
+  resolvedAt     DateTime?
+
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model ContactRequest {
+  id                  String    @id @default(cuid())
+  status              String    @default("PENDING") // PENDING, ACCEPTED, DECLINED
+  initialMessage      String
+  verificationDetails String?   // claimant proof of ownership or verification details
+
+  itemId              String
+  item                Item      @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  senderId            String
+  sender              User      @relation("SentRequests", fields: [senderId], references: [id], onDelete: Cascade)
+
+  receiverId          String
+  receiver            User      @relation("ReceivedRequests", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  messages            Message[]
+
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model Message {
+  id               String         @id @default(cuid())
+  content          String
+
+  contactRequestId String
+  contactRequest   ContactRequest @relation(fields: [contactRequestId], references: [id], onDelete: Cascade)
+
+  senderId         String
+  sender           User           @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  createdAt        DateTime       @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String   // MATCH_FOUND, CONTACT_REQUEST, STATUS_UPDATE, COMPLAINT_UPDATE, SYSTEM
+  title     String
+  message   String
+  linkUrl   String?
+  isRead    Boolean  @default(false)
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  action     String   // STATUS_CHANGE, USER_SUSPENDED, ITEM_DELETED, COMPLAINT_RESOLVED
+  targetType String   // ITEM, USER, COMPLAINT
+  targetId   String
+  details    String?
+
+  adminId    String
+  admin      User     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+}
