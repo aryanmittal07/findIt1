@@ -1,4 +1,4 @@
-import ReportForm from '@/components/ReportForm';
+import ReportForm from '../../../components/ReportForm';
 
 export default function ReportLostPage() {
   return <ReportForm initialType="LOST" />;

@@ -26,9 +26,9 @@ import {
   MapPin,
   Tag,
 } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
-import { formatDate, formatDateTime, getStatusStyle } from '@/lib/utils';
-import ItemCard from '@/components/ItemCard';
+import { useAuth } from '../../context/AuthContext';
+import { formatDate, formatDateTime, getStatusStyle } from '../../lib/utils';
+import ItemCard from '../../components/ItemCard';
 
 function DashboardContent() {
   const router = useRouter();

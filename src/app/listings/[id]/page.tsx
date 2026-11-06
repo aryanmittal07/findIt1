@@ -20,10 +20,10 @@ import {
   CheckSquare,
   XCircle,
 } from 'lucide-react';
-import { formatDate, formatDateTime, getStatusStyle } from '@/lib/utils';
-import ContactModal from '@/components/ContactModal';
-import ItemCard from '@/components/ItemCard';
-import { useAuth } from '@/context/AuthContext';
+import { formatDate, formatDateTime, getStatusStyle } from '../../../lib/utils';
+import ContactModal from '../../../components/ContactModal';
+import ItemCard from '../../../components/ItemCard';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function ListingDetailPage() {
   const params = useParams();

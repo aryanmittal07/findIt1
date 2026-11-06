@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { getCurrentUser, unauthorizedResponse, forbiddenResponse } from '@/lib/auth';
-import { maskContact } from '@/lib/utils';
+import { prisma } from '../../../../lib/prisma';
+import { getCurrentUser, unauthorizedResponse, forbiddenResponse } from '../../../../lib/auth';
+import { maskContact } from '../../../../lib/utils';
 
 export const dynamic = 'force-dynamic';
 

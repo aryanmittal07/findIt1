@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { prisma } from '@/lib/prisma';
-import { signToken } from '@/lib/jwt';
-import { loginSchema } from '@/lib/validations';
+import { prisma } from '../../../../lib/prisma';
+import { signToken } from '../../../../lib/jwt';
+import { loginSchema } from '../../../../lib/validations';
 
 export async function POST(request: NextRequest) {
   try {

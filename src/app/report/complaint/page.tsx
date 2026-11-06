@@ -12,7 +12,7 @@ import {
   Loader2,
   Lock,
 } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function ComplaintPage() {
   const { user, loading: authLoading } = useAuth();

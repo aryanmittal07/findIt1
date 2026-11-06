@@ -20,8 +20,8 @@ import {
   ExternalLink,
   Edit,
 } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
-import { formatDate, formatDateTime, getStatusStyle } from '@/lib/utils';
+import { useAuth } from '../../context/AuthContext';
+import { formatDate, formatDateTime, getStatusStyle } from '../../lib/utils';
 
 export default function AdminControlPanel() {
   const { user, loading: authLoading } = useAuth();

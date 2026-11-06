@@ -17,8 +17,8 @@ import {
   Loader2,
   FileText,
 } from 'lucide-react';
-import ImageUploader from '@/components/ImageUploader';
-import { useAuth } from '@/context/AuthContext';
+import ImageUploader from '../components/ImageUploader';
+import { useAuth } from '../context/AuthContext';
 
 interface ReportFormProps {
   initialType: 'LOST' | 'FOUND';

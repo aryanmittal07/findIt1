@@ -4,7 +4,7 @@ import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Compass, Lock, Mail, AlertCircle, ArrowRight, Loader2, ShieldCheck, UserCheck } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 function LoginContent() {
   const router = useRouter();

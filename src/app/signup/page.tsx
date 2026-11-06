@@ -4,7 +4,7 @@ import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Compass, User, Mail, Phone, Lock, MapPin, AlertCircle, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 function SignUpContent() {
   const router = useRouter();

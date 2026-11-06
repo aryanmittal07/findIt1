@@ -27,7 +27,7 @@ import {
   AlertCircle,
   ChevronDown,
 } from 'lucide-react';
-import ItemCard from '@/components/ItemCard';
+import ItemCard from '../components/ItemCard';
 
 export default function HomePage() {
   const router = useRouter();

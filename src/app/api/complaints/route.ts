@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { getCurrentUser, unauthorizedResponse } from '@/lib/auth';
-import { complaintSchema } from '@/lib/validations';
-import { generateReferenceId } from '@/lib/utils';
+import { prisma } from '../../../lib/prisma';
+import { getCurrentUser, unauthorizedResponse } from '../../../lib/auth';
+import { complaintSchema } from '../../../lib/validations';
+import { generateReferenceId } from '../../../lib/utils';
 
 export const dynamic = 'force-dynamic';
 

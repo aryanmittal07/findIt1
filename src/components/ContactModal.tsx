@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { X, ShieldCheck, Send, AlertTriangle, CheckCircle, Lock } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import Link from 'next/link';
 
 interface ContactModalProps {

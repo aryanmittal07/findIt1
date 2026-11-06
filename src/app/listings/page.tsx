@@ -11,7 +11,7 @@ import {
   PlusCircle,
   Loader2,
 } from 'lucide-react';
-import ItemCard from '@/components/ItemCard';
+import ItemCard from '../../components/ItemCard';
 import Link from 'next/link';
 
 function ListingsContent() {

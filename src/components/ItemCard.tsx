@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { formatDate } from '@/lib/utils';
+import { formatDate } from '../lib/utils';
 import { Award, Camera } from 'lucide-react';
 
 export interface ItemCardProps {
