@@ -53,35 +53,6 @@ function LoginContent() {
           </p>
         </div>
 
-        {/* Demo Credentials Reference Box */}
-        <div className="p-4 bg-[#e2eee5]/80 border border-[#c5dcce] rounded-2xl space-y-2 text-xs">
-          <p className="font-semibold text-[#193227] flex items-center gap-1.5">
-            <UserCheck className="w-4 h-4 text-[#32634c]" />
-            Registered Accounts (Click to fill email)
-          </p>
-          <div className="grid grid-cols-2 gap-2 pt-1">
-            <button
-              type="button"
-              onClick={() => handleFillCredentials('aryan@example.com')}
-              className="px-3 py-2 bg-white hover:bg-[#fbf8f3] border border-[#c5dcce] text-[#193227] rounded-xl font-medium text-left transition-colors shadow-2xs"
-            >
-              <span className="block font-bold text-[#193227]">Aryan (Student)</span>
-              <span className="text-[10px] text-[#6c8074]">Pass: UserPass123!</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleFillCredentials('admin@findit.org')}
-              className="px-3 py-2 bg-white hover:bg-[#fbf8f3] border border-[#faedd9] text-[#894323] rounded-xl font-medium text-left transition-colors shadow-2xs"
-            >
-              <span className="block font-bold text-[#894323]">Campus Staff (Admin)</span>
-              <span className="text-[10px] text-[#894323]/80">Pass: AdminPass123!</span>
-            </button>
-          </div>
-          <p className="text-[10px] text-[#55695e] pt-1 italic">
-            * Password is encrypted with bcrypt and verified securely on the server.
-          </p>
-        </div>
-
         {error && (
           <div className="p-3.5 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl text-xs flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
