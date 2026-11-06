@@ -3,6 +3,8 @@ import crypto from 'crypto';
 import { prisma } from '../../../../lib/prisma';
 import { forgotPasswordSchema } from '../../../../lib/validations';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

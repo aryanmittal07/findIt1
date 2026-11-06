@@ -3,6 +3,8 @@ import { prisma } from '../../../../../lib/prisma';
 import { getCurrentUser, unauthorizedResponse } from '../../../../../lib/auth';
 import { contactRequestSchema } from '../../../../../lib/validations';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
