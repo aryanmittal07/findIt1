@@ -15,8 +15,7 @@ build/
 .env.development.local
 .env.test.local
 
-# SQLite database (do not commit — Railway will use a persistent volume)
-prisma/dev.db
+# SQLite database temporary files
 prisma/dev.db-journal
 prisma/*.db-shm
 prisma/*.db-wal
